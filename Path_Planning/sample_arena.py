@@ -1,6 +1,7 @@
 import pygame,sys
 import arenav0
 import numpy as np
+import arenav1
 
 clock = pygame.time.Clock()
 
@@ -75,11 +76,17 @@ def draw_path(p,x = offsetx,y = offsety,edge = edge):
 Take input from the user and change the path1 to output of the path planning function
 '''
 ### CHANGE THIS LINE \/ \/ \/ \/ \/ \/ 
-path1 = [(0,0),(1,0),(2,0),(3,0)] ######
+
+position=[int(i) for i in input("Starting Position : ").split()]
+destination=[int(i) for i in input("Destination :").split()]
+arena_main=arenav0.info()
+path1=arenav1.Path(position,destination,arena_main)
+
 ### CHANGE THIS LINE ^^^^^^^^^^^^^^^^^
 draw_path_bool = False ### If a path is found then make this variable True
 
-
+if path1.any():
+    draw_path_bool=True
 
 
 

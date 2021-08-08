@@ -1,25 +1,12 @@
 import numpy as np
 from math import *
 
-def info():
-    data = np.array([[0]*14]*14)
-    for j in range(14):
-        for k in range(14):
-            if ((j//2) in (1,3,5)) and ((k//2) in (1,3,5)):
-                data[j][k] = -1
-    return data
-
 def dist(x,y,dest):
     a=(x-dest[0])**2
     b=(y-dest[1])**2
     return sqrt(a+b)
 
-if __name__ == '__main__':
-    data = info()
-    print(data)
-
-    position=[int(i) for i in input("Starting Position : ").split()]
-    destination=[int(i) for i in input("Destination :").split()]
+def Path(position,destination,data):
     
     final=[position[:]]
 
@@ -134,7 +121,7 @@ if __name__ == '__main__':
 
                 final.append(position)
 
-    print(final)
+    return np.array(final)
 
 
 
