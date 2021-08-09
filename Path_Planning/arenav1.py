@@ -6,6 +6,27 @@ def dist(x,y,dest):
     b=(y-dest[1])**2
     return sqrt(a+b)
 
+def check(a,b,data):
+
+    if [a[0]+1,a[1]-1]==[b[0],b[1]-1] and data[b[0],a[1]-1]==-1:
+        return True
+    elif [a[0]-1,a[1]-1]==[b[0]-1,b[1]] and data[a[0]-1,b[1]]==-1:
+        return True
+    elif [a[0]-1,a[1]+1]==[b[0],b[1]+1] and data[b[0],a[1]+1]==-1:
+        return True
+    elif [a[0]+1,a[1]+1]==[b[0]+1,b[1]] and data[a[0]+1,b[1]]==-1:
+        return True
+    elif [a[0]+1,a[1]+1]==[b[0],b[1]+1] and data[b[0],a[1]+1]==-1:
+        return True
+    elif [a[0]-1,a[1]+1]==[b[0]-1,b[1]] and data[a[0]-1,b[1]]==-1:
+        return True
+    elif [a[0]-1,a[1]-1]==[b[0],b[1]-1] and data[b[0],a[1]-1]==-1:
+        return True
+    elif [a[0]+1,a[1]-1]==[b[0]+1,b[1]] and data[a[0]+1,b[1]]==-1:
+        return True
+    else:
+        return False
+
 def Path(position,destination,data):
     
     final=[position[:]]
@@ -34,13 +55,15 @@ def Path(position,destination,data):
                 new_left,new_right=new_dist,new_dist
                 if position[0]-1>-1 and data[position[0]-1][position[1]]==0:
                     new_left=dist(position[0]-1,position[1],destination)
-                elif position[0]+1<14 and data[position[0]+1][position[1]]==0:
+                if position[0]+1<14 and data[position[0]+1][position[1]]==0:
                     new_right=dist(position[0]+1,position[1],destination)
 
                 if new_left<new_dist:
-                    position=[position[0]-1,position[1]]
+                    if data[position[0]-1,pos2[1]]!=-1:
+                        position=[position[0]-1,position[1]]
                 elif new_right<new_dist:
-                    position=[position[0]+1,position[1]]
+                    if data[position[0]+1,pos2[1]]!=-1:
+                        position=[position[0]+1,position[1]]
 
                 final.append(position)
             elif down<left:
@@ -49,13 +72,15 @@ def Path(position,destination,data):
                 new_left,new_right=new_dist,new_dist
                 if position[0]-1>-1 and data[position[0]-1][position[1]]==0 :
                     new_left=dist(position[0]-1,position[1],destination)
-                elif position[0]+1<14 and data[position[0]+1][position[1]]==0:
+                if position[0]+1<14 and data[position[0]+1][position[1]]==0:
                     new_right=dist(position[0]+1,position[1],destination)
 
                 if new_left<new_dist:
-                    position=[position[0]-1,position[1]]
+                    if data[position[0]-1,pos2[1]]!=-1:
+                        position=[position[0]-1,position[1]]
                 elif new_right<new_dist:
-                    position=[position[0]+1,position[1]]
+                    if data[position[0]+1,pos2[1]]!=-1:
+                        position=[position[0]+1,position[1]]
 
                 final.append(position)
             else:
@@ -64,13 +89,15 @@ def Path(position,destination,data):
                 new_up,new_down=new_dist,new_dist
                 if position[1]+1<14 and data[position[0]][position[1]+1]==0:
                     new_up=dist(position[0],position[1]+1,destination)
-                elif position[1]-1>-1 and data[position[0]][position[1]-1]==0:
+                if position[1]-1>-1 and data[position[0]][position[1]-1]==0:
                     new_down=dist(position[0],position[1]-1,destination)
 
                 if new_up<new_dist:
-                    position=[position[0],position[1]+1]
+                    if data[pos2[0],position[1]+1]!=-1:
+                        position=[position[0],position[1]+1]
                 elif new_down<new_dist:
-                    position=[position[0],position[1]-1]
+                    if data[pos2[0],position[1]-1]!=-1:
+                        position=[position[0],position[1]-1]
 
                 final.append(position)
 
@@ -79,16 +106,17 @@ def Path(position,destination,data):
                 position=[pos2[0],pos2[1]+1]
                 new_dist=dist(position[0],position[1],destination)
                 new_left,new_right=new_dist,new_dist
-                if position[0]-1>-1 and data[position[0]-1][position[1]]==0 :
+                if position[0]-1>-1 and data[position[0]-1][position[1]]==0:
                     new_left=dist(position[0]-1,position[1],destination)
-                elif position[0]+1<14 and data[position[0]+1][position[1]]==0:
+                if position[0]+1<14 and data[position[0]+1][position[1]]==0:
                     new_right=dist(position[0]+1,position[1],destination)
 
                 if new_left<new_dist:
-                    position=[position[0]-1,position[1]]
+                    if data[position[0]-1,pos2[1]]!=-1:
+                        position=[position[0]-1,position[1]]
                 elif new_right<new_dist:
-                    position=[position[0]+1,position[1]]
-
+                    if data[position[0]+1,pos2[1]]!=-1:
+                        position=[position[0]+1,position[1]]
                 final.append(position)
             elif down<right:
                 position=[pos2[0],pos2[1]-1]
@@ -96,13 +124,15 @@ def Path(position,destination,data):
                 new_left,new_right=new_dist,new_dist
                 if position[0]-1>-1 and data[position[0]-1][position[1]]==0:
                     new_left=dist(position[0]-1,position[1],destination)
-                elif position[0]+1<14 and data[position[0]+1][position[1]]==0:
+                if position[0]+1<14 and data[position[0]+1][position[1]]==0:
                     new_right=dist(position[0]+1,position[1],destination)
 
                 if new_left<new_dist:
-                    position=[position[0]-1,position[1]]
+                    if data[position[0]-1,pos2[1]]!=-1:
+                        position=[position[0]-1,position[1]]
                 elif new_right<new_dist:
-                    position=[position[0]+1,position[1]]
+                    if data[position[0]+1,pos2[1]]!=-1:
+                        position=[position[0]+1,position[1]]
 
                 final.append(position)
             else:
@@ -111,13 +141,16 @@ def Path(position,destination,data):
                 new_up,new_down=new_dist,new_dist
                 if position[1]+1<14 and data[position[0]][position[1]+1]==0:
                     new_up=dist(position[0],position[1]+1,destination)
-                elif position[1]-1>-1 and data[position[0]][position[1]-1]==0:
+                if position[1]-1>-1 and data[position[0]][position[1]-1]==0:
                     new_down=dist(position[0],position[1]-1,destination)
 
                 if new_up<new_dist:
-                    position=[position[0],position[1]+1]
+                    
+                    if data[pos2[0],position[1]+1]!=-1:
+                        position=[position[0],position[1]+1]
                 elif new_down<new_dist:
-                    position=[position[0],position[1]-1]
+                    if data[pos2[0],position[1]-1]!=-1:
+                        position=[position[0],position[1]-1]
 
                 final.append(position)
 
@@ -125,6 +158,6 @@ def Path(position,destination,data):
 
 
 
-        
+
 
 
