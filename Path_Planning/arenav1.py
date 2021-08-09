@@ -6,27 +6,6 @@ def dist(x,y,dest):
     b=(y-dest[1])**2
     return sqrt(a+b)
 
-def check(a,b,data):
-
-    if [a[0]+1,a[1]-1]==[b[0],b[1]-1] and data[b[0],a[1]-1]==-1:
-        return True
-    elif [a[0]-1,a[1]-1]==[b[0]-1,b[1]] and data[a[0]-1,b[1]]==-1:
-        return True
-    elif [a[0]-1,a[1]+1]==[b[0],b[1]+1] and data[b[0],a[1]+1]==-1:
-        return True
-    elif [a[0]+1,a[1]+1]==[b[0]+1,b[1]] and data[a[0]+1,b[1]]==-1:
-        return True
-    elif [a[0]+1,a[1]+1]==[b[0],b[1]+1] and data[b[0],a[1]+1]==-1:
-        return True
-    elif [a[0]-1,a[1]+1]==[b[0]-1,b[1]] and data[a[0]-1,b[1]]==-1:
-        return True
-    elif [a[0]-1,a[1]-1]==[b[0],b[1]-1] and data[b[0],a[1]-1]==-1:
-        return True
-    elif [a[0]+1,a[1]-1]==[b[0]+1,b[1]] and data[a[0]+1,b[1]]==-1:
-        return True
-    else:
-        return False
-
 def Path(position,destination,data):
     
     final=[position[:]]
