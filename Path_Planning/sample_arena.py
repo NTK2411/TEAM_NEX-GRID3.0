@@ -47,12 +47,15 @@ def arena(x,y,edge,mx,my):      #default ->>20,20,560
             
 def hover(mx, my,x,y,edge_sq):
     #HOVER SELECTION
-    selected_tile_x = -1
-    selected_tile_y = -1
+    selected_tile_x = 13
+    selected_tile_y = 13
     if((x<mx<x+edge) and (y<my<y+edge)):
         selected_tile_x = (mx - x) // edge_sq
         selected_tile_y = (my - y) // edge_sq
-
+        # print(arena_main[selected_tile_x][selected_tile_y])
+        if arena_main[selected_tile_x][selected_tile_y] == -1:
+            selected_tile_x = 13
+            selected_tile_y = 13
     return selected_tile_x, selected_tile_y
 
 
@@ -77,36 +80,43 @@ Take input from the user and change the path1 to output of the path planning fun
 '''
 ### CHANGE THIS LINE \/ \/ \/ \/ \/ \/ 
 
-position=[int(i) for i in input("Starting Position : ").split()]
-destination=[int(i) for i in input("Destination :").split()]
+# position=[0,0]#[int(i) for i in input("Starting Position : ").split()]
+# destination=[13,13]#[int(i) for i in input("Destination :").split()]
 arena_main=arenav0.info()
-path1=arenav1.Path(position,destination,arena_main)
+# path1=arenav1.Path(position,destination,arena_main)
 
 ### CHANGE THIS LINE ^^^^^^^^^^^^^^^^^
 draw_path_bool = False ### If a path is found then make this variable True
 
-if path1.any():
-    draw_path_bool=True
+# if path1.any():
+#     draw_path_bool=True
 
 
 
-
-
-while (draw_path_bool):
+print("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥IMPORTANT🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥")
+print("RIGHT CLICK TO CHOOSE STARTING TILE AND HOVER FOR ENDING TILE")
+while 1:
     mx, my = pygame.mouse.get_pos()
     
     screen.fill(BG_Color)
     arena(offsetx,offsety,edge, mx, my)
     mxi, myj = hover(mx, my, offsetx, offsety,edge//14)
-
-    
-    draw_path(path1)
+    destination = [mxi,myj]
+    if draw_path_bool == True:
+        print(mxi, myj)####
+        path1=arenav1.Path(position,destination,arena_main)
+        draw_path(path1)
     
 
     #events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                position = [mxi, myj]
+                draw_path_bool = True
+                
     
     
     

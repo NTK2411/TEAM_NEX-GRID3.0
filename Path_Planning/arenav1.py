@@ -1,5 +1,6 @@
 import numpy as np
 from math import *
+import arenav0
 
 def dist(x,y,dest):
     a=(x-dest[0])**2
@@ -137,6 +138,11 @@ def Path(position,destination,data):
 
 
 
-
-
+if __name__=='__main__':
+    position=[0,0]#[int(i) for i in input("Starting Position : ").split()]
+    destination=[7,13]#[int(i) for i in input("Destination :").split()]
+    arena_main=arenav0.info()
+    path1=Path(position,destination,arena_main)
+    print(path1)
+    print("🍆🍆")
 
