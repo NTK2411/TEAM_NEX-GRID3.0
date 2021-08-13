@@ -2,6 +2,7 @@ import pygame,sys
 import arenav0
 import numpy as np
 import arenav1
+import map2graph as m2p
 
 clock = pygame.time.Clock()
 
@@ -53,9 +54,9 @@ def hover(mx, my,x,y,edge_sq):
         selected_tile_x = (mx - x) // edge_sq
         selected_tile_y = (my - y) // edge_sq
         # print(arena_main[selected_tile_x][selected_tile_y])
-        if arena_main[selected_tile_x][selected_tile_y] == -1:
-            selected_tile_x = 13
-            selected_tile_y = 13
+        # if arena_main[selected_tile_x][selected_tile_y] == -1:
+        #     selected_tile_x = 13
+        #     selected_tile_y = 13
     return selected_tile_x, selected_tile_y
 
 
@@ -83,6 +84,12 @@ Take input from the user and change the path1 to output of the path planning fun
 # position=[0,0]#[int(i) for i in input("Starting Position : ").split()]
 # destination=[13,13]#[int(i) for i in input("Destination :").split()]
 arena_main=arenav0.info()
+dict_main = m2p.graphfunction1(arena_main)
+# m2p.see_dictionary(dict_main)
+# start = m2p.coord_con_str([0,0])
+# end = m2p.coord_con_str([13,13])
+# _, _, p = m2p.path_dijkstra(dict_main,start,end)
+
 # path1=arenav1.Path(position,destination,arena_main)
 
 ### CHANGE THIS LINE ^^^^^^^^^^^^^^^^^
@@ -90,6 +97,7 @@ draw_path_bool = False ### If a path is found then make this variable True
 
 # if path1.any():
 #     draw_path_bool=True
+
 
 
 
@@ -101,10 +109,14 @@ while 1:
     screen.fill(BG_Color)
     arena(offsetx,offsety,edge, mx, my)
     mxi, myj = hover(mx, my, offsetx, offsety,edge//14)
+    if arena_main[myj,mxi] == -1:
+        mxi,myj = 13,13
     destination = [mxi,myj]
+    end = m2p.coord_con_str([mxi,myj])
     if draw_path_bool == True:
         print(mxi, myj)####
-        path1=arenav1.Path(position,destination,arena_main)
+        # path1=arenav1.Path(position,destination,arena_main)
+        _, _, path1 = m2p.path_dijkstra(dict_main,start,end)
         draw_path(path1)
     
 
@@ -115,6 +127,7 @@ while 1:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 position = [mxi, myj]
+                start = m2p.coord_con_str([mxi,myj])
                 draw_path_bool = True
                 
     

@@ -140,7 +140,7 @@ def Path(position,destination,data):
 
 if __name__=='__main__':
     position=[0,0]#[int(i) for i in input("Starting Position : ").split()]
-    destination=[7,13]#[int(i) for i in input("Destination :").split()]
+    destination=[13,13]#[int(i) for i in input("Destination :").split()]
     arena_main=arenav0.info()
     path1=Path(position,destination,arena_main)
     print(path1)
