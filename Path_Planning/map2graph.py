@@ -17,11 +17,11 @@ def graphfunction1(info):
                             if (i+x) in range(info.shape[0]) and (j+y) in range(info.shape[1]):
                                 if info[y+j,x+i] != -1:
                                     if (i * j == 0):
-                                            d[coord_con_str([y,x])][coord_con_str([y+j,x+i])] = 0#info[y+j,x+i]
+                                            d[coord_con_str([y,x])][coord_con_str([y+j,x+i])] = 1#info[y+j,x+i]
                                     else:
                                         # print(f"{x,y}  {i,j}")
                                         if info[y+j,x] != -1 and info[y,x+i] != -1:
-                                            d[coord_con_str([y,x])][coord_con_str([y+j,x+i])] = 0#info[y+j,x+i]
+                                            d[coord_con_str([y,x])][coord_con_str([y+j,x+i])] = 1.414#info[y+j,x+i]
     
 
     return d
@@ -111,7 +111,8 @@ def path_dijkstra(graph,start,goal):
 if __name__ == "__main__":
     arena_main=arenav0.info()
     dict_main = graphfunction1(arena_main)
-    start = coord_con_str([0,0])
-    end = coord_con_str([13,13])
-    _, _, p = path_dijkstra(dict_main,start,'d0001')
-    print(p)
+    see_dictionary(dict_main)
+    # start = coord_con_str([0,0])
+    # end = coord_con_str([13,13])
+    # _, _, p = path_dijkstra(dict_main,start,'d0001')
+    # print(p)

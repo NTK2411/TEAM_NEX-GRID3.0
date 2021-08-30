@@ -117,7 +117,9 @@ while 1:
         print(mxi, myj)####
         # path1=arenav1.Path(position,destination,arena_main)
         _, _, path1 = m2p.path_dijkstra(dict_main,start,end)
+        _, _, path2 = m2p.path_dijkstra(dict_main,m2p.coord_con_str([0,13]),end)
         draw_path(path1)
+        draw_path(path2)
     
 
     #events

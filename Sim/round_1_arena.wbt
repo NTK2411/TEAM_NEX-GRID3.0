@@ -1,0 +1,64 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.9999739730577843 -0.007211179510829907 0.00022824787393279126 1.3831474680653466
+  position -0.07855767838124303 6.672358141393564 1.1164418766838067
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 3.048 1.524
+  floorTileSize 0.3048 0.3048
+  wallThickness 1e-10
+  wallHeight 1e-10
+}
+Wall {
+  translation 1.524 7.37188e-14 0.6096
+  rotation 0 1 0 3.14159
+  name "wall(19)"
+  size 0.01 0.0254 0.3048
+  appearance Roughcast {
+    colorOverride 1 1 0
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Wall {
+  translation -1.524 7.63833e-14 0.6096
+  rotation 0 1 0 1.01503e-06
+  name "wall(2)"
+  size 0.01 0.0254 0.3048
+  appearance Roughcast {
+    colorOverride 1 1 0
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Wall {
+  translation -0.9144 -5.9508e-14 -0.1524
+  name "wall(9)"
+  size 1.2192 0.0054 1.2192
+  appearance Roughcast {
+    colorOverride 0 0 0
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
+Wall {
+  translation 0.9144 -1.35892e-13 -0.1524
+  name "wall(1)"
+  size 1.2192 0.0054 1.2192
+  appearance Roughcast {
+    colorOverride 0 0 0
+    textureTransform TextureTransform {
+      scale 1 2.4
+    }
+  }
+}
